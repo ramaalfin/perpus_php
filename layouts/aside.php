@@ -73,7 +73,7 @@
         </li>
         <li class="menu-item">
             <a href="loan.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-time"></i>
+                <i class='menu-icon tf-icons bx bx-archive-in'></i>
                 <div data-i18n="Analytics">Loan</div>
             </a>
         </li>

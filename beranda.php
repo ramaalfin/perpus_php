@@ -52,7 +52,11 @@ require('layouts/header.php')
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
                                         <div class="avatar flex-shrink-0">
-                                            <img src="assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded">
+                                            <div class='bg-primary p-2 rounded'>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: scaleX(-1);msFilter:progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);">
+                                                    <path d="M20 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm-1 4v2h-5V7h5zm-5 4h5v2h-5v-2zM4 19V5h7v14H4z"></path>
+                                                </svg>
+                                            </div>
                                         </div>
                                         <div class="dropdown">
                                             <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,8 +80,11 @@ require('layouts/header.php')
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
-                                        <div class="avatar flex-shrink-0">
-                                            <img src="assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded">
+                                        <div class='bg-primary p-2 rounded'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
+                                                <path d="M6 22h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1H21V4c0-1.103-.897-2-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3zM5 8V5c0-.805.55-.988 1-1h13v12H5V8z"></path>
+                                                <path d="M8 6h9v2H8z"></path>
+                                            </svg>
                                         </div>
                                         <div class="dropdown">
                                             <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -95,14 +102,16 @@ require('layouts/header.php')
                             </div>
                         </div>
                         <!-- Books -->
-                        
+
                         <!-- Members -->
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
-                                        <div class="avatar flex-shrink-0">
-                                            <img src="assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded">
+                                        <div class='bg-primary p-2 rounded'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
+                                                <path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
+                                            </svg>
                                         </div>
                                         <div class="dropdown">
                                             <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -126,8 +135,11 @@ require('layouts/header.php')
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
-                                        <div class="avatar flex-shrink-0">
-                                            <img src="assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded">
+                                        <div class='bg-primary p-2 rounded'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
+                                                <path d="m21.706 5.292-2.999-2.999A.996.996 0 0 0 18 2H6a.996.996 0 0 0-.707.293L2.294 5.292A.994.994 0 0 0 2 6v13c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6a.994.994 0 0 0-.294-.708zM6.414 4h11.172l1 1H5.414l1-1zM4 19V7h16l.002 12H4z"></path>
+                                                <path d="M14 9h-4v3H7l5 5 5-5h-3z"></path>
+                                            </svg>
                                         </div>
                                         <div class="dropdown">
                                             <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -145,7 +157,7 @@ require('layouts/header.php')
                             </div>
                         </div>
                         <!-- Loans -->
-                    
+
                     </div>
 
                 </div>
