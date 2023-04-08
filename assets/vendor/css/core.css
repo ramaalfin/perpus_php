@@ -2895,7 +2895,7 @@ textarea.form-control-lg {
   border-radius: 0.375rem;
 }
 .dropdown-menu[data-bs-popper] {
-  top: 100%;
+  top: 0;
   left: 0;
   margin-top: 0.125rem;
 }

@@ -47,35 +47,37 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item">
-            <a href="beranda.php" class="menu-link">
+        <?php if(isset($href)){?>
+        <li class="menu-item <?php echo ($active == 'beranda' ? 'active' : '') ?>">
+            <a href="<?= $href[0] ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div>Dashboard</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="book_categories.php" class="menu-link">
+        <li class="menu-item <?php echo ($active == 'category' ? 'active' : '') ?>">
+            <a href="<?= $href[1] ?>" class="menu-link">
                 <i class='menu-icon tf-icons bx bx-book-content'></i>
-                <div data-i18n="Analytics">Book Categories</div>
+                <div>Book Categories</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="books.php" class="menu-link">
+        <li class="menu-item <?php echo ($active == 'book' ? 'active' : '') ?>">
+            <a href="<?= $href[2] ?>" class="menu-link">
                 <i class='menu-icon tf-icons bx bx-book'></i>
-                <div data-i18n="Analytics">Books</div>
+                <div>Books</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="members.php" class="menu-link">
-                <i class='menu-icon tf-icons bx bx-male'></i>
-                <div data-i18n="Analytics">Members</div>
+        <li class="menu-item <?php echo ($active == 'member' ? 'active' : '') ?>">
+            <a href="<?= $href[3] ?>" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-user'></i>
+                <div>Members</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="loan.php" class="menu-link">
+        <li class="menu-item <?php echo ($active == 'loan' ? 'active' : '') ?>">
+            <a href="<?= $href[4] ?>" class="menu-link">
                 <i class='menu-icon tf-icons bx bx-archive-in'></i>
-                <div data-i18n="Analytics">Loan</div>
+                <div>Loan</div>
             </a>
         </li>
+        <?php }?>
     </ul>
 </aside>

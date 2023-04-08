@@ -1,4 +1,16 @@
 <?php
+$title = 'Login - Admin';
+$href = [
+  'https://fonts.googleapis.com',
+  'https://fonts.gstatic.com',
+  'https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap',
+  'assets/vendor/fonts/boxicons.css',
+  'assets/vendor/css/core.css',
+  'assets/vendor/css/theme-default.css',
+  'assets/css/demo.css',
+  'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css',
+  'assets/vendor/css/pages/page-auth.css',
+];
 require('layouts/header.php')
 ?>
 <div class="container-xxl">
@@ -51,7 +63,7 @@ require('layouts/header.php')
           <h4 class="mb-2">Welcome to Sneat! 👋</h4>
           <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-          <form id="formAuthentication" class="mb-3" action="beranda.php" method="POST">
+          <form id="formAuthentication" class="mb-3" action="beranda/index.php" method="POST">
             <div class="mb-3">
               <label for="email" class="form-label">Email or Username</label>
               <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus />
@@ -92,5 +104,9 @@ require('layouts/header.php')
   </div>
 </div>
 <?php
+$src = [
+  'assets/vendor/js/helpers.js',
+  'assets/js/config.js'
+];
 require('layouts/footer.php')
 ?>

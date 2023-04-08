@@ -1,30 +1,53 @@
 <?php
-require('layouts/header.php')
+$title = "Loans";
+$active = "loan";
+$href = [
+    'https://fonts.googleapis.com',
+    'https://fonts.gstatic.com',
+    'https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap',
+    '../assets/vendor/fonts/boxicons.css',
+    '../assets/vendor/css/core.css',
+    '../assets/vendor/css/theme-default.css',
+    '../assets/css/demo.css',
+    '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css',
+    '../assets/vendor/css/pages/page-auth.css',
+];
+require('../layouts/header.php');
 ?>
 
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
         <!-- Menu -->
-        <?php require('layouts/aside.php')?>
+        <?php 
+        $href = [
+            '../beranda/index.php',
+            '../book_categories/index.php',
+            '../book/index.php',
+            '../members/index.php',
+            '../loan/index.php',
+        ];
+        require('../layouts/aside.php')
+        ?>
         <!-- / Menu -->
 
         <!-- Layout container -->
         <div class="layout-page">
             <!-- Navbar -->
-            <?php require('layouts/nav.php')?>
+            <?php require('../layouts/nav.php')?>
             <!-- / Navbar -->
 
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
+
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="row">
                         <div class="col-lg-12 mb-4 order-0">
                             <div class="card">
                                 <div class="d-flex align-items-start row">
                                     <div class="card-body">
-                                        <h5 class="card-title text-primary ms-2">Books</h5>
+                                        <h5 class="card-title text-primary ms-2">Loan</h5>
                                         <div class="table-responsive text-nowrap">
                                             <table class="table">
                                                 <thead>
@@ -43,13 +66,13 @@ require('layouts/header.php')
                                                         <td>
                                                             <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                                                 <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Lilian Fuller">
-                                                                    <img src="assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                                                    <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
                                                                 </li>
                                                                 <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Sophia Wilkerson">
-                                                                    <img src="assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+                                                                    <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
                                                                 </li>
                                                                 <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Christina Parker">
-                                                                    <img src="assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
+                                                                    <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
                                                                 </li>
                                                             </ul>
                                                         </td>
@@ -163,6 +186,7 @@ require('layouts/header.php')
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- / Content -->
 
@@ -202,5 +226,14 @@ require('layouts/header.php')
 <!-- / Layout wrapper -->
 
 <?php
-require('layouts/footer.php')
+$src = [
+    '../assets/vendor/libs/jquery/jquery.js',
+    '../assets/vendor/libs/popper/popper.js',
+    '../assets/vendor/js/bootstrap.js',
+    '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js',
+    '../assets/vendor/js/menu.js',
+    '../assets/js/main.js',
+    'https://buttons.github.io/buttons.js',
+];
+require('../layouts/footer.php')
 ?>

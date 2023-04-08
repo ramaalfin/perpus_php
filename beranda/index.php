@@ -1,18 +1,40 @@
 <?php
-require('layouts/header.php')
+$title = "Beranda";
+$active = "beranda";
+$href = [
+    'https://fonts.googleapis.com',
+    'https://fonts.gstatic.com',
+    'https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap',
+    '../assets/vendor/fonts/boxicons.css',
+    '../assets/vendor/css/core.css',
+    '../assets/vendor/css/theme-default.css',
+    '../assets/css/demo.css',
+    '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css',
+    '../assets/vendor/css/pages/page-auth.css',
+];
+require('../layouts/header.php');
 ?>
 
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
         <!-- Menu -->
-        <?php require('layouts/aside.php') ?>
+        <?php 
+        $href = [
+            '../beranda/index.php',
+            '../book_categories/index.php',
+            '../book/index.php',
+            '../members/index.php',
+            '../loan/index.php',
+        ];
+        require('../layouts/aside.php') 
+        ?>
         <!-- / Menu -->
 
         <!-- Layout container -->
         <div class="layout-page">
             <!-- Navbar -->
-            <?php require('layouts/nav.php') ?>
+            <?php require('../layouts/nav.php') ?>
             <!-- / Navbar -->
 
             <!-- Content wrapper -->
@@ -199,5 +221,9 @@ require('layouts/header.php')
 <!-- / Layout wrapper -->
 
 <?php
-require('layouts/footer.php')
+$src = [
+    'assets/vendor/js/helpers.js',
+    'assets/js/config.js'
+];
+require('../layouts/footer.php')
 ?>
