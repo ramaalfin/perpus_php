@@ -72,7 +72,6 @@ require_once('proses.php');
                                                 <tbody class="table-border-bottom-0">
                                                     <?php
                                                     $no = 1;
-                                                    $books = getBooks();
                                                     ?>
                                                     <?php foreach ($books as $book) : ?>
                                                         <tr>
@@ -84,11 +83,11 @@ require_once('proses.php');
                                                             <td><?= $book['publish_year'] ?></td>
                                                             <td class="d-flex gap-2">
                                                                 <!-- edit -->
-                                                                <a href="edit.php?id=<?= $book['id'] ?>" class="dropdown-item p-1" href="javascript:void(0);" id="editBtn">
+                                                                <a href="edit.php?id=<?= $book['id'] ?>" class="dropdown-item p-1" id="editBtn">
                                                                     <i class="bx bx-edit-alt me-1"></i>
                                                                 </a>
                                                                 <!-- delete -->
-                                                                <a class="dropdown-item p-1" href="javascript:void(0);"><i class="bx bx-trash me-1"></i></a>
+                                                                <a class="dropdown-item p-1" href="delete.php?id=<?= $book['id'] ?>"><i class="bx bx-trash me-1"></i></a>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -99,31 +98,29 @@ require_once('proses.php');
                                 </div>
 
                                 <!-- Paginate -->
-                                <?php for ($i=0; $i < $totalPages; $i++) : ?>
-                                <div class="demo-inline-spacing">
+                                <div class="demo-inline-spacing ms-3">
                                     <!-- Basic Pagination -->
                                     <nav aria-label="Page navigation">
                                         <ul class="pagination">
-                                            <!-- <li class="page-item first">
-                                                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-left"></i></a>
-                                            </li>
+                                            <?php if ($page > 1) :?>
                                             <li class="page-item prev">
-                                                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-left"></i></a>
-                                            </li> -->
-                                            <li class="page-item<?= $i == $currentPage ? 'active' : '' ?>">
-                                                <a class="page-link" href="javascript:void(0);">1</a>
+                                                <a class="page-link" href="?page=<?= $page - 1 ?>"><i class="tf-icon bx bx-chevron-left"></i></a>
                                             </li>
-                                            <!-- <li class="page-item next">
-                                                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-right"></i></a>
+                                            <?php endif?>
+                                            <?php for ($i=1; $i < $totalPages; $i++) :?>
+                                            <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                                                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
                                             </li>
-                                            <li class="page-item last">
-                                                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-right"></i></a>
-                                            </li> -->
+                                            <?php endfor ?>
+                                            <?php if ($page < $totalPages) :?>
+                                            <li class="page-item next">
+                                                <a class="page-link" href="?page=<?= $page + 1 ?>"><i class="tf-icon bx bx-chevron-right"></i></a>
+                                            </li>
+                                            <?php endif?>
                                         </ul>
                                     </nav>
                                     <!--/ Basic Pagination -->
                                 </div>
-                                <?php endfor; ?>
                             </div>
                         </div>
                     </div>

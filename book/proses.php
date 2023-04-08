@@ -11,15 +11,32 @@ function getCategory()
     $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $categories;
 }
-function getBooks()
+function getBooks($offset, $perPage)
 {
     global $conn;
-    $query = "SELECT books.*, book_categories.name as category FROM books JOIN book_categories ON books.category_id = book_categories.id ORDER BY title";
-    $stmt = $conn->prepare($query);
+    $stmt = $conn->prepare("SELECT books.*, book_categories.name as category FROM books JOIN book_categories ON books.category_id = book_categories.id ORDER BY title LIMIT :offset, :perPage");
+    $stmt->bindParam(':offset',$offset, PDO::PARAM_INT);
+    $stmt->bindParam(':perPage', $perPage, PDO::PARAM_INT);
     $stmt->execute();
-    $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $books;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function countBooks(){
+    global $conn;
+    $stmt = $conn->prepare("SELECT COUNT(*) as count FROM books");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['count'];
+}
+
+// Menampilkan tabel buku beserta fitur pagination
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$perPage = 10;
+$offset = ($page - 1) * $perPage;
+$books = getBooks($offset, $perPage);
+
+$totalBooks = countBooks();
+$totalPages = ceil($totalBooks / $perPage);
 
 // Add a book
 if (isset($_POST['addBtnSubmit'])) {
