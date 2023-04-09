@@ -1,5 +1,5 @@
 <?php
-// ...
+session_start();
 require_once('../database.php');
 
 function getCategory()
@@ -15,13 +15,14 @@ function getBooks($offset, $perPage)
 {
     global $conn;
     $stmt = $conn->prepare("SELECT books.*, book_categories.name as category FROM books JOIN book_categories ON books.category_id = book_categories.id ORDER BY title LIMIT :offset, :perPage");
-    $stmt->bindParam(':offset',$offset, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
     $stmt->bindParam(':perPage', $perPage, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function countBooks(){
+function countBooks()
+{
     global $conn;
     $stmt = $conn->prepare("SELECT COUNT(*) as count FROM books");
     $stmt->execute();
@@ -48,7 +49,7 @@ if (isset($_POST['addBtnSubmit'])) {
 
     $sql = "INSERT INTO books (title, category_id, author, publisher, publish_year) VALUES (:title, :category_id, :author, :publisher, :publish_year)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([
+    $result = $stmt->execute([
         'title' => $title,
         'category_id' => $category_id,
         'author' => $author,
@@ -56,8 +57,15 @@ if (isset($_POST['addBtnSubmit'])) {
         'publish_year' => $publish_year,
     ]);
 
-    header("Location: index.php");
-    exit();
+    if ($result) {
+        $_SESSION['success'] = "Data berhasil ditambah";
+        header('Location: index.php');
+        exit();
+    } else {
+        $_SESSION['error'] = "Data gagal ditambah";
+        header('Location: ' . $_SERVER['HTTP_REFERER']); // redirect ke halaman sebelumnya
+        exit();
+    }
 }
 
 // Update a book
@@ -77,10 +85,17 @@ if (isset($_POST['editBtnSubmit'])) {
     $stmt->bindParam(':publisher', $publisher);
     $stmt->bindParam(':publish_year', $publish_year);
     $stmt->bindParam(':id', $id);
-    $stmt->execute();
+    $result = $stmt->execute();
 
-    header('Location: index.php');
-    exit();
+    if ($result) {
+        $_SESSION['success'] = "Data berhasil diubah";
+        header('Location: index.php');
+        exit();
+    } else {
+        $_SESSION['error'] = "Data gagal diubah";
+        header('Location: ' . $_SERVER['HTTP_REFERER']); // redirect ke halaman sebelumnya
+        exit();
+    }
 }
 
 // Get a book by id
@@ -91,4 +106,21 @@ function getBookById($id)
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id]);
     return $stmt->fetch();
+}
+
+// Delete book by id
+if (isset($_POST['delete_book'])) {
+    $id = $_POST['id'];
+    $stmt = $conn->prepare("DELETE FROM books WHERE id = ?");
+    $result = $stmt->execute([$id]);
+
+    if ($result) {
+        $_SESSION['success'] = "Data berhasil dihapus";
+        header('Location: index.php');
+        exit();
+    } else {
+        $_SESSION['error'] = "Data gagal dihapus";
+        header('Location: index.php');
+        exit();
+    }
 }

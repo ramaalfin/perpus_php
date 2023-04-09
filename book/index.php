@@ -38,6 +38,29 @@ require_once('proses.php');
 
         <!-- Layout container -->
         <div class="layout-page">
+            <!-- Toast-->
+            <?php if (isset($_SESSION['success']) || isset($_SESSION['error'])) : ?>
+                <div class="bs-toast toast toast-placement-ex m-2 fade show bg-success bottom-0 end-0" id="toastModal" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="bx bx-bell me-2"></i>
+                        <div class="me-auto fw-semibold">Notifications</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <p><?php echo isset($_SESSION['success']) ? $_SESSION['success'] : $_SESSION['error'] ?></p>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function() {
+                        $("#toastModal").modal("show");
+                    });
+                </script>
+            <?php endif; ?>
+            <?php unset($_SESSION['success']); ?>
+            <?php unset($_SESSION['error']); ?>
+            <!-- Toast -->
+
             <!-- Navbar -->
             <?php require('../layouts/nav.php') ?>
             <!-- / Navbar -->
@@ -86,8 +109,9 @@ require_once('proses.php');
                                                                 <a href="edit.php?id=<?= $book['id'] ?>" class="dropdown-item p-1" id="editBtn">
                                                                     <i class="bx bx-edit-alt me-1"></i>
                                                                 </a>
-                                                                <!-- delete -->
-                                                                <a class="dropdown-item p-1" href="delete.php?id=<?= $book['id'] ?>"><i class="bx bx-trash me-1"></i></a>
+                                                                <button class="dropdown-item p-1 btn-delete" data-id="<?= $book['id'] ?>">
+                                                                    <i class="bx bx-trash me-1"></i>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -102,21 +126,21 @@ require_once('proses.php');
                                     <!-- Basic Pagination -->
                                     <nav aria-label="Page navigation">
                                         <ul class="pagination">
-                                            <?php if ($page > 1) :?>
-                                            <li class="page-item prev">
-                                                <a class="page-link" href="?page=<?= $page - 1 ?>"><i class="tf-icon bx bx-chevron-left"></i></a>
-                                            </li>
-                                            <?php endif?>
-                                            <?php for ($i=1; $i < $totalPages; $i++) :?>
-                                            <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                                                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                                            </li>
+                                            <?php if ($page > 1) : ?>
+                                                <li class="page-item prev">
+                                                    <a class="page-link" href="?page=<?= $page - 1 ?>"><i class="tf-icon bx bx-chevron-left"></i></a>
+                                                </li>
+                                            <?php endif ?>
+                                            <?php for ($i = 1; $i < $totalPages; $i++) : ?>
+                                                <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                                                    <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                                                </li>
                                             <?php endfor ?>
-                                            <?php if ($page < $totalPages) :?>
-                                            <li class="page-item next">
-                                                <a class="page-link" href="?page=<?= $page + 1 ?>"><i class="tf-icon bx bx-chevron-right"></i></a>
-                                            </li>
-                                            <?php endif?>
+                                            <?php if ($page < $totalPages) : ?>
+                                                <li class="page-item next">
+                                                    <a class="page-link" href="?page=<?= $page + 1 ?>"><i class="tf-icon bx bx-chevron-right"></i></a>
+                                                </li>
+                                            <?php endif ?>
                                         </ul>
                                     </nav>
                                     <!--/ Basic Pagination -->
@@ -159,61 +183,30 @@ require_once('proses.php');
     <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 
-<!-- modal tambah/ubah buku-->
-<div class="modal fade" id="bookModal" tabindex="-1" aria-hidden="true">
+<!-- modal -->
+<div class="modal fade" id="modalCenter" tabindex="-1" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 id="modalTitle"></h5>
+                <h5 class="modal-title" id="modalCenterTitle">Delete Book</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="proses.php" method="POST" id="bookForm">
-                <div class="modal-body">
-                    <input type="hidden" name="id" value="">
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" id="title" class="form-control" name="title" placeholder="Title" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label for="book_categories" class="form-label">Book Category</label>
-                            <select id="category_id" class="form-select" name="category_id">
-                                <?php
-                                $categories = getCategory();
-                                foreach ($categories as $category) : ?>
-                                    <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label for="author" class="form-label">Author</label>
-                            <input type="text" id="author" class="form-control" name="author" placeholder="Author" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label for="publisher" class="form-label">Publisher</label>
-                            <input type="text" id="publisher" class="form-control" name="publisher" placeholder="publisher" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label for="publish_year" class="form-label">Publish_year</label>
-                            <input type="date" id="publish_year" class="form-control" name="publish_year" placeholder="publish_year" required>
-                        </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <h5>Apakah Kamu yakin ingin menghapus buku ini?</h5>
                     </div>
                 </div>
-                <div class="modal-footer">
+            </div>
+            <div class="modal-footer">
+                <form action="proses.php" method="post">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
-                    <button type="submit" class="btn btn-primary" id="btnSubmit" name="addBtnSubmit"></button>
-                </div>
-            </form>
+                    <input type="hidden" name="id" id="delete-book-id">
+                    <button type="submit" class="btn btn-primary" name="delete_book">Save changes</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -230,6 +223,21 @@ $src = [
     'https://buttons.github.io/buttons.js',
     'script.js'
 ];
+
+$script = "
+<script>
+    const deleteButtons = document.querySelectorAll('.btn-delete');
+    const deleteBookId = document.querySelector('#delete-book-id');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const bookId = button.getAttribute('data-id');
+            deleteBookId.value = bookId;
+            $('#modalCenter').modal('show');
+        })
+    })
+</script>
+";
 
 require('../layouts/footer.php')
 ?>

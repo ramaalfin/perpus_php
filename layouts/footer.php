@@ -8,6 +8,12 @@ if (isset($src)) {
 }
 ?>
 
+<?php 
+if (isset($script)) {
+  echo $script;
+}
+?>
+
 </body>
 
 </html>
