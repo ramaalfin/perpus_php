@@ -92,9 +92,10 @@ require_once('proses.php');
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="table-border-bottom-0">
+                                                <tbody class="table-border-bottom-0" id="book-list">
                                                     <?php
                                                     $no = 1;
+                                                    $books = getBooks($offset, $perPage);
                                                     ?>
                                                     <?php foreach ($books as $book) : ?>
                                                         <tr>
@@ -215,6 +216,7 @@ require_once('proses.php');
 <?php
 $src = [
     '../assets/vendor/libs/jquery/jquery.js',
+    'https://code.jquery.com/jquery-3.6.0.min.js',
     '../assets/vendor/libs/popper/popper.js',
     '../assets/vendor/js/bootstrap.js',
     '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js',
