@@ -2,15 +2,13 @@
 $title = "Members";
 $active = "member";
 $href = [
-    'https://fonts.googleapis.com',
-    'https://fonts.gstatic.com',
-    'https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap',
     '../assets/vendor/fonts/boxicons.css',
     '../assets/vendor/css/core.css',
     '../assets/vendor/css/theme-default.css',
     '../assets/css/demo.css',
     '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css',
     '../assets/vendor/css/pages/page-auth.css',
+    '../assets/vendor/css/dataTables.bootstrap5.min.css',
 ];
 require('../layouts/header.php');
 ?>
@@ -37,6 +35,27 @@ require_once('proses.php');
 
         <!-- Layout container -->
         <div class="layout-page">
+            <!-- Toast-->
+            <?php if (isset($_SESSION['success_member']) || isset($_SESSION['error_member'])) : ?>
+                <div class="bs-toast toast toast-placement-ex m-2 fade show bg-success bottom-0 end-0" id="toastModal" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="bx bx-bell me-2"></i>
+                        <div class="me-auto fw-semibold">Notifications</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <p><?php echo isset($_SESSION['success_member']) ? $_SESSION['success_member'] : $_SESSION['error_member'] ?></p>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function() {
+                        $("#toastModal").modal("show");
+                    });
+                </script>
+            <?php endif; ?>
+            <!-- Toast -->
+
             <!-- Navbar -->
             <?php require('../layouts/nav.php') ?>
             <!-- / Navbar -->
@@ -51,12 +70,14 @@ require_once('proses.php');
                             <div class="card">
                                 <div class="d-flex align-items-start row">
                                     <div class="card-body">
-                                        <h5 class="card-title text-primary ms-2">Members</h5>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title text-primary ms-2">Members</h5>
+                                            <a href="tambah.php" class="btn btn-primary" id="addBtn">+</a>
+                                        </div>
                                         <div class="table-responsive text-nowrap">
-                                            <table class="table">
+                                            <table id="example" class="table table-striped" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>No.</th>
                                                         <th>Name</th>
                                                         <th>Address</th>
                                                         <th>Phone Number</th>
@@ -65,53 +86,51 @@ require_once('proses.php');
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
                                                     <?php
-                                                    $no = 1;
                                                     $members = getMembers($offset, $perPage);
                                                     ?>
                                                     <?php foreach ($members as $member) : ?>
                                                         <tr>
-                                                            <td><?= $no++ ?></td>
-                                                            <td><?= $member['name'] ?></td>
+                                                            <td><strong><?= $member['name'] ?></strong></td>
                                                             <td><?= $member['address'] ?></td>
                                                             <td><?= $member['phone_number'] ?></td>
                                                             <td class="d-flex">
                                                                 <!-- edit -->
-                                                                <a href="edit.php?id=<?= $member['id'] ?>" class="dropdown-item p-1" id="editBtn">
+                                                                <a href="edit.php?id=<?= $member['id'] ?>" class="dropdown-item w-auto p-1">
                                                                     <i class="bx bx-edit-alt"></i>
                                                                 </a>
-                                                                <button class="dropdown-item p-1 btn-delete" data-id="<?= $member['id'] ?>">
-                                                                    <i class="bx bx-trash "></i>
+                                                                <button type="button" class="dropdown-item w-auto p-1 btn-delete" data-id="<?= $member['id'] ?>">
+                                                                    <i class="bx bx-trash"></i>
                                                                 </button>
                                                             </td>
                                                         </tr>
-                                                    <?php endforeach ?>
+                                                    <?php endforeach; ?>
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <!-- Paginate -->
+                                        <div class="demo-inline-spacing">
+                                            <nav aria-label="Page navigation">
+                                                <ul class="pagination">
+                                                    <?php if ($page > 1) : ?>
+                                                        <li class="page-item prev">
+                                                            <a class="page-link" href="?page=<?= $page - 1 ?>"><i class="tf-icon bx bx-chevron-left"></i></a>
+                                                        </li>
+                                                    <?php endif ?>
+                                                    <?php for ($i = 1; $i < $totalPages; $i++) : ?>
+                                                        <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                                                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                                                        </li>
+                                                    <?php endfor ?>
+                                                    <?php if ($page < $totalPages) : ?>
+                                                        <li class="page-item next">
+                                                            <a class="page-link" href="?page=<?= $page + 1 ?>"><i class="tf-icon bx bx-chevron-right"></i></a>
+                                                        </li>
+                                                    <?php endif ?>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                        <!--/ Basic Pagination -->
                                     </div>
-                                </div>
-                                <div class="demo-inline-spacing ms-3">
-                                    <!-- Basic Pagination -->
-                                    <nav aria-label="Page navigation">
-                                        <ul class="pagination">
-                                            <?php if ($page > 1) : ?>
-                                                <li class="page-item prev">
-                                                    <a class="page-link" href="?page=<?= $page - 1 ?>"><i class="tf-icon bx bx-chevron-left"></i></a>
-                                                </li>
-                                            <?php endif ?>
-                                            <?php for ($i = 1; $i < $totalPages; $i++) : ?>
-                                                <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                                                    <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                                                </li>
-                                            <?php endfor ?>
-                                            <?php if ($page < $totalPages) : ?>
-                                                <li class="page-item next">
-                                                    <a class="page-link" href="?page=<?= $page + 1 ?>"><i class="tf-icon bx bx-chevron-right"></i></a>
-                                                </li>
-                                            <?php endif ?>
-                                        </ul>
-                                    </nav>
-                                    <!--/ Basic Pagination -->
                                 </div>
                             </div>
                         </div>
@@ -155,15 +174,63 @@ require_once('proses.php');
 </div>
 <!-- / Layout wrapper -->
 
+<!-- modal delete -->
+<div class="modal fade" id="modalCenter" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCenterTitle">Delete Member</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Apakah Kamu yakin ingin menghapus data member ini?</h5>
+            </div>
+            <div class="modal-footer">
+                <form action="proses.php" method="post">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <input type="hidden" name="id" id="delete-member-id">
+                    <button type="submit" class="btn btn-primary" name="delete_member">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
 $src = [
     '../assets/vendor/libs/jquery/jquery.js',
     '../assets/vendor/libs/popper/popper.js',
     '../assets/vendor/js/bootstrap.js',
+    '../assets/vendor/js/jquery.dataTables.min.js',
+    '../assets/vendor/js/dataTables.bootstrap5.min.js',
     '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js',
-    '../assets/vendor/js/menu.js',
-    '../assets/js/main.js',
     'https://buttons.github.io/buttons.js',
 ];
-require('../layouts/footer.php')
+
+$script = "
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            paging: false,
+        });
+    });
+</script>
+<script>
+    const deleteButtons = document.querySelectorAll('.btn-delete');
+    const deleteMemberId = document.querySelector('#delete-member-id');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const memberId = button.getAttribute('data-id');
+            deleteMemberId.value = memberId;
+            $('#modalCenter').modal('show');
+        });
+    });
+</script>
+";
+require('../layouts/footer.php');
+unset($_SESSION['success_member']);
+unset($_SESSION['error_member']);
 ?>

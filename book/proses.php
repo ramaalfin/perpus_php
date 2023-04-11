@@ -48,8 +48,8 @@ if (isset($_POST['addBtnSubmit'])) {
     $publisher = $_POST['publisher'];
     $publish_year = $_POST['publish_year'];
 
-    $sql = "INSERT INTO books (title, category_id, author, publisher, publish_year) VALUES (:title, :category_id, :author, :publisher, :publish_year)";
-    $stmt = $conn->prepare($sql);
+    $query = "INSERT INTO books (title, category_id, author, publisher, publish_year) VALUES (:title, :category_id, :author, :publisher, :publish_year)";
+    $stmt = $conn->prepare($query);
     $result = $stmt->execute([
         'title' => $title,
         'category_id' => $category_id,
@@ -59,11 +59,11 @@ if (isset($_POST['addBtnSubmit'])) {
     ]);
 
     if ($result) {
-        $_SESSION['success'] = "Data berhasil ditambah";
+        $_SESSION['success_book'] = "Berhasil menambah data buku";
         header('Location: index.php');
         exit();
     } else {
-        $_SESSION['error'] = "Data gagal ditambah";
+        $_SESSION['error_book'] = "Gagal menambah data buku";
         header('Location: ' . $_SERVER['HTTP_REFERER']); // redirect ke halaman sebelumnya
         exit();
     }
@@ -89,11 +89,11 @@ if (isset($_POST['editBtnSubmit'])) {
     $result = $stmt->execute();
 
     if ($result) {
-        $_SESSION['success'] = "Data berhasil diubah";
+        $_SESSION['success_book'] = "Berhasil mengubah data buku";
         header('Location: index.php');
         exit();
     } else {
-        $_SESSION['error'] = "Data gagal diubah";
+        $_SESSION['error_book'] = "Gagal mengubah data buku";
         header('Location: ' . $_SERVER['HTTP_REFERER']); // redirect ke halaman sebelumnya
         exit();
     }
@@ -116,11 +116,11 @@ if (isset($_POST['delete_book'])) {
     $result = $stmt->execute([$id]);
 
     if ($result) {
-        $_SESSION['success'] = "Data berhasil dihapus";
+        $_SESSION['success_book'] = "Berhasil menghapus data buku";
         header('Location: index.php');
         exit();
     } else {
-        $_SESSION['error'] = "Data gagal dihapus";
+        $_SESSION['error_book'] = "Gagal menghapus data buku";
         header('Location: index.php');
         exit();
     }

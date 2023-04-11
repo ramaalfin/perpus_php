@@ -2,9 +2,6 @@
 $title = "Books";
 $active = "book";
 $href = [
-    'https://fonts.googleapis.com',
-    'https://fonts.gstatic.com',
-    'https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap',
     '../assets/vendor/fonts/boxicons.css',
     '../assets/vendor/css/core.css',
     '../assets/vendor/css/theme-default.css',
@@ -42,7 +39,7 @@ require_once('proses.php');
         <!-- Layout container -->
         <div class="layout-page">
             <!-- Toast-->
-            <?php if (isset($_SESSION['success']) || isset($_SESSION['error'])) : ?>
+            <?php if (isset($_SESSION['success_book']) || isset($_SESSION['error_book'])) : ?>
                 <div class="bs-toast toast toast-placement-ex m-2 fade show bg-success bottom-0 end-0" id="toastModal" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header">
                         <i class="bx bx-bell me-2"></i>
@@ -50,7 +47,7 @@ require_once('proses.php');
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
-                        <p><?php echo isset($_SESSION['success']) ? $_SESSION['success'] : $_SESSION['error'] ?></p>
+                        <p><?php echo isset($_SESSION['success_book']) ? $_SESSION['success_book'] : $_SESSION['error_book'] ?></p>
                     </div>
                 </div>
 
@@ -60,8 +57,6 @@ require_once('proses.php');
                     });
                 </script>
             <?php endif; ?>
-            <?php unset($_SESSION['success']); ?>
-            <?php unset($_SESSION['error']); ?>
             <!-- Toast -->
 
             <!-- Navbar -->
@@ -79,7 +74,7 @@ require_once('proses.php');
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <h5 class="card-title text-primary ms-2">Books</h5>
-                                            <a href="tambah.php" class="btn btn-primary" id="addBtn">+</a>
+                                            <a href="tambah.php" class="btn btn-primary">+</a>
                                         </div>
 
                                         <div class="table-responsive text-nowrap">
@@ -99,13 +94,13 @@ require_once('proses.php');
                                                         <tr>
                                                             <td><strong><?= $book['title'] ?></strong></td>
                                                             <td><?= ($book['category_id'] = $book['category']) ? $book['category'] : '' ?></td>
-                                                            <td class="d-flex gap-2">
+                                                            <td class="d-flex gap-2 ">
                                                                 <!-- edit -->
-                                                                <a href="edit.php?id=<?= $book['id'] ?>" class="dropdown-item p-1" id="editBtn">
-                                                                    <i class="bx bx-edit-alt me-1"></i>
+                                                                <a href="edit.php?id=<?= $book['id'] ?>" class="dropdown-item w-auto p-1">
+                                                                    <i class="bx bx-edit-alt"></i>
                                                                 </a>
-                                                                <button class="dropdown-item p-1 btn-delete" data-id="<?= $book['id'] ?>">
-                                                                    <i class="bx bx-trash me-1"></i>
+                                                                <button type="button" class="dropdown-item w-auto p-1 btn-delete" data-id="<?= $book['id'] ?>">
+                                                                    <i class="bx bx-trash"></i>
                                                                 </button>
                                                             </td>
                                                         </tr>
@@ -177,7 +172,7 @@ require_once('proses.php');
     <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 
-<!-- modal -->
+<!-- modal delete -->
 <div class="modal fade" id="modalCenter" tabindex="-1" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -186,11 +181,7 @@ require_once('proses.php');
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <h5>Apakah Kamu yakin ingin menghapus buku ini?</h5>
-                    </div>
-                </div>
+                <h5>Apakah Kamu yakin ingin menghapus data buku ini?</h5>
             </div>
             <div class="modal-footer">
                 <form action="proses.php" method="post">
@@ -209,16 +200,12 @@ require_once('proses.php');
 <?php
 $src = [
     '../assets/vendor/libs/jquery/jquery.js',
-    'https://code.jquery.com/jquery-3.6.0.min.js',
     '../assets/vendor/libs/popper/popper.js',
     '../assets/vendor/js/bootstrap.js',
     '../assets/vendor/js/jquery.dataTables.min.js',
     '../assets/vendor/js/dataTables.bootstrap5.min.js',
     '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js',
-    '../assets/vendor/js/menu.js',
-    '../assets/js/main.js',
     'https://buttons.github.io/buttons.js',
-    'script.js'
 ];
 
 $script = "
@@ -243,5 +230,7 @@ $script = "
 </script>
 ";
 
-require('../layouts/footer.php')
+require('../layouts/footer.php');
+unset($_SESSION['success_book']);
+unset($_SESSION['error_book']);
 ?>

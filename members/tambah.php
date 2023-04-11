@@ -1,6 +1,6 @@
 <?php
-$title = "Add Books";
-$active = "book";
+$title = "Add Members";
+$active = "member";
 $href = [
     'https://fonts.googleapis.com',
     'https://fonts.gstatic.com',
@@ -57,38 +57,20 @@ require_once('proses.php');
                                                 <input type="hidden" name="id" value="">
                                                 <div class="row">
                                                     <div class="col mb-3">
-                                                        <label for="title" class="form-label">Title</label>
-                                                        <input type="text" id="title" class="form-control" name="title" placeholder="Title" required>
+                                                        <label for="name" class="form-label">Name</label>
+                                                        <input type="text" id="name" class="form-control" name="name" placeholder="Name" required>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col mb-3">
-                                                        <label for="book_categories" class="form-label">Book Category</label>
-                                                        <select id="category_id" class="form-select" name="category_id">
-                                                            <?php
-                                                            $categories = getCategory();
-                                                            foreach ($categories as $category) : ?>
-                                                                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
-                                                            <?php endforeach; ?>
-                                                        </select>
+                                                        <label for="address" class="form-label">Address</label>
+                                                        <input type="text" id="address" class="form-control" name="address" placeholder="Address" required>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col mb-3">
-                                                        <label for="author" class="form-label">Author</label>
-                                                        <input type="text" id="author" class="form-control" name="author" placeholder="Author" required>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="publisher" class="form-label">Publisher</label>
-                                                        <input type="text" id="publisher" class="form-control" name="publisher" placeholder="publisher" required>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="publish_year" class="form-label">Publish_year</label>
-                                                        <input type="date" id="publish_year" class="form-control" name="publish_year" placeholder="publish_year" required>
+                                                        <label for="phone_number" class="form-label">Phone Number</label>
+                                                        <input type="text" id="phone_number" class="form-control" name="phone_number" placeholder="Phone Number" required>
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary" id="btnSubmit" name="addBtnSubmit">Add</button>

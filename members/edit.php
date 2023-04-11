@@ -1,6 +1,6 @@
 <?php
-$title = "Add Books";
-$active = "book";
+$title = "Edit Members";
+$active = "member";
 $href = [
     'https://fonts.googleapis.com',
     'https://fonts.gstatic.com',
@@ -17,6 +17,14 @@ require('../layouts/header.php');
 
 <?php
 require_once('proses.php');
+?>
+
+<?php 
+$id = $_GET['id'];
+$query = $conn->prepare("SELECT * FROM members WHERE id = :id");
+$query->bindParam(':id', $id);
+$query->execute();
+$member = $query->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!-- Layout wrapper -->
@@ -51,47 +59,29 @@ require_once('proses.php');
                             <div class="card">
                                 <div class="d-flex align-items-start row">
                                     <div class="card-body">
-                                        <h5 class="card-title text-primary ms-2">Add Books</h5>
+                                        <h5 class="card-title text-primary ms-2">Edit Books</h5>
                                         <form action="proses.php" method="POST">
                                             <div class="p-2">
-                                                <input type="hidden" name="id" value="">
+                                                <input type="hidden" name="id" value="<?= $member['id'] ?>">
                                                 <div class="row">
                                                     <div class="col mb-3">
-                                                        <label for="title" class="form-label">Title</label>
-                                                        <input type="text" id="title" class="form-control" name="title" placeholder="Title" required>
+                                                        <label for="name" class="form-label">Name</label>
+                                                        <input type="text" id="name" class="form-control" name="name" placeholder="Name" value="<?= $member['name'] ?>" required>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col mb-3">
-                                                        <label for="book_categories" class="form-label">Book Category</label>
-                                                        <select id="category_id" class="form-select" name="category_id">
-                                                            <?php
-                                                            $categories = getCategory();
-                                                            foreach ($categories as $category) : ?>
-                                                                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
-                                                            <?php endforeach; ?>
-                                                        </select>
+                                                        <label for="address" class="form-label">Address</label>
+                                                        <input type="text" id="address" class="form-control" name="address" placeholder="Address" value="<?= $member['address'] ?>" required>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col mb-3">
-                                                        <label for="author" class="form-label">Author</label>
-                                                        <input type="text" id="author" class="form-control" name="author" placeholder="Author" required>
+                                                        <label for="phone_number" class="form-label">Phone Number</label>
+                                                        <input type="text" id="phone_number" class="form-control" name="phone_number" placeholder="Phone Number" value="<?= $member['phone_number'] ?>" required>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="publisher" class="form-label">Publisher</label>
-                                                        <input type="text" id="publisher" class="form-control" name="publisher" placeholder="publisher" required>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="publish_year" class="form-label">Publish_year</label>
-                                                        <input type="date" id="publish_year" class="form-control" name="publish_year" placeholder="publish_year" required>
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary" id="btnSubmit" name="addBtnSubmit">Add</button>
+                                                <button type="submit" class="btn btn-primary" id="btnSubmit" name="editBtnSubmit">Edit</button>
                                             </div>
                                         </form>
                                     </div>
