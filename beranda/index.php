@@ -33,9 +33,6 @@ require('../layouts/header.php');
 
         <!-- Layout container -->
         <div class="layout-page">
-            <!-- Navbar -->
-            <?php require('../layouts/nav.php') ?>
-            <!-- / Navbar -->
 
             <!-- Content wrapper -->
             <div class="content-wrapper">

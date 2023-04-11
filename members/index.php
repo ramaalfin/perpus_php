@@ -56,10 +56,6 @@ require_once('proses.php');
             <?php endif; ?>
             <!-- Toast -->
 
-            <!-- Navbar -->
-            <?php require('../layouts/nav.php') ?>
-            <!-- / Navbar -->
-
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
@@ -90,14 +86,12 @@ require_once('proses.php');
                                                     ?>
                                                     <?php foreach ($members as $member) : ?>
                                                         <tr>
-                                                            <td><strong><?= $member['name'] ?></strong></td>
+                                                            <td><a href="edit.php?id=<?= $member['id'] ?>">
+                                                                    <?= $member['name'] ?>
+                                                                </a></td>
                                                             <td><?= $member['address'] ?></td>
                                                             <td><?= $member['phone_number'] ?></td>
                                                             <td class="d-flex">
-                                                                <!-- edit -->
-                                                                <a href="edit.php?id=<?= $member['id'] ?>" class="dropdown-item w-auto p-1">
-                                                                    <i class="bx bx-edit-alt"></i>
-                                                                </a>
                                                                 <button type="button" class="dropdown-item w-auto p-1 btn-delete" data-id="<?= $member['id'] ?>">
                                                                     <i class="bx bx-trash"></i>
                                                                 </button>

@@ -59,10 +59,6 @@ require_once('proses.php');
             <?php endif; ?>
             <!-- Toast -->
 
-            <!-- Navbar -->
-            <?php require('../layouts/nav.php') ?>
-            <!-- / Navbar -->
-
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
@@ -83,6 +79,7 @@ require_once('proses.php');
                                                     <tr>
                                                         <th>Title</th>
                                                         <th>Category</th>
+                                                        <th>Author</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
@@ -92,13 +89,12 @@ require_once('proses.php');
                                                     ?>
                                                     <?php foreach ($books as $book) : ?>
                                                         <tr>
-                                                            <td><strong><?= $book['title'] ?></strong></td>
+                                                            <td><a href="edit.php?id=<?= $book['id'] ?>">
+                                                                <?= $book['title'] ?>
+                                                                </a></td>
                                                             <td><?= ($book['category_id'] = $book['category']) ? $book['category'] : '' ?></td>
+                                                            <td><?= $book['author'] ?></td>
                                                             <td class="d-flex gap-2 ">
-                                                                <!-- edit -->
-                                                                <a href="edit.php?id=<?= $book['id'] ?>" class="dropdown-item w-auto p-1">
-                                                                    <i class="bx bx-edit-alt"></i>
-                                                                </a>
                                                                 <button type="button" class="dropdown-item w-auto p-1 btn-delete" data-id="<?= $book['id'] ?>">
                                                                     <i class="bx bx-trash"></i>
                                                                 </button>

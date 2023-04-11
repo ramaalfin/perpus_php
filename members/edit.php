@@ -46,9 +46,6 @@ $member = $query->fetch(PDO::FETCH_ASSOC);
 
         <!-- Layout container -->
         <div class="layout-page">
-            <!-- Navbar -->
-            <?php require('../layouts/nav.php') ?>
-            <!-- / Navbar -->
 
             <!-- Content wrapper -->
             <div class="content-wrapper">

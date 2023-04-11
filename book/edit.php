@@ -46,7 +46,6 @@ $book = $query->fetch(PDO::FETCH_ASSOC);
         <!-- Layout container -->
         <div class="layout-page">
             <!-- Navbar -->
-            <?php require('../layouts/nav.php') ?>
             <!-- / Navbar -->
 
             <!-- Content wrapper -->
@@ -96,6 +95,12 @@ $book = $query->fetch(PDO::FETCH_ASSOC);
                                                     <div class="col mb-3">
                                                         <label for="publish_year" class="form-label">Publish_year</label>
                                                         <input type="date" id="publish_year" class="form-control" name="publish_year" placeholder="publish_year" value="<?= $book['publish_year'] ?>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col mb-3">
+                                                        <label for="stok" class="form-label">Stok</label>
+                                                        <input type="number" id="stok" class="form-control" name="stok" placeholder="stok" value="<?= $book['stok'] ?>" required>
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary" id="btnSubmit" name="editBtnSubmit">Edit</button>

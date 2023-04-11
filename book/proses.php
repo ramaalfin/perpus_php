@@ -47,8 +47,9 @@ if (isset($_POST['addBtnSubmit'])) {
     $author = $_POST['author'];
     $publisher = $_POST['publisher'];
     $publish_year = $_POST['publish_year'];
+    $stok = $_POST['stok'];
 
-    $query = "INSERT INTO books (title, category_id, author, publisher, publish_year) VALUES (:title, :category_id, :author, :publisher, :publish_year)";
+    $query = "INSERT INTO books (title, category_id, author, publisher, publish_year, stok) VALUES (:title, :category_id, :author, :publisher, :publish_year, :stok)";
     $stmt = $conn->prepare($query);
     $result = $stmt->execute([
         'title' => $title,
@@ -56,6 +57,7 @@ if (isset($_POST['addBtnSubmit'])) {
         'author' => $author,
         'publisher' => $publisher,
         'publish_year' => $publish_year,
+        'stok' => $stok,
     ]);
 
     if ($result) {
@@ -77,14 +79,16 @@ if (isset($_POST['editBtnSubmit'])) {
     $author = $_POST['author'];
     $publisher = $_POST['publisher'];
     $publish_year = $_POST['publish_year'];
+    $stok = $_POST['stok'];
 
     // Update book
-    $stmt = $conn->prepare("UPDATE books SET title = :title, category_id = :category_id, author = :author, publisher = :publisher, publish_year = :publish_year WHERE id = :id");
+    $stmt = $conn->prepare("UPDATE books SET title = :title, category_id = :category_id, author = :author, publisher = :publisher, publish_year = :publish_year, stok = :stok WHERE id = :id");
     $stmt->bindParam(':title', $title);
     $stmt->bindParam(':category_id', $category_id);
     $stmt->bindParam(':author', $author);
     $stmt->bindParam(':publisher', $publisher);
     $stmt->bindParam(':publish_year', $publish_year);
+    $stmt->bindParam(':stok', $stok);
     $stmt->bindParam(':id', $id);
     $result = $stmt->execute();
 
