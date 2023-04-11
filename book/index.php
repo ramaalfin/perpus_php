@@ -11,6 +11,9 @@ $href = [
     '../assets/css/demo.css',
     '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css',
     '../assets/vendor/css/pages/page-auth.css',
+    '../assets/vendor/css/dataTables.bootstrap5.min.css',
+
+
 ];
 require('../layouts/header.php');
 ?>
@@ -80,31 +83,22 @@ require_once('proses.php');
                                         </div>
 
                                         <div class="table-responsive text-nowrap">
-                                            <table class="table">
+                                            <table id="example" class="table table-striped" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>No.</th>
                                                         <th>Title</th>
                                                         <th>Category</th>
-                                                        <th>Author</th>
-                                                        <th>Publisher</th>
-                                                        <th>Publish Year</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="table-border-bottom-0" id="book-list">
+                                                <tbody class="table-border-bottom-0">
                                                     <?php
-                                                    $no = 1;
                                                     $books = getBooks($offset, $perPage);
                                                     ?>
                                                     <?php foreach ($books as $book) : ?>
                                                         <tr>
-                                                            <td><?= $no++ ?></td>
                                                             <td><strong><?= $book['title'] ?></strong></td>
                                                             <td><?= ($book['category_id'] = $book['category']) ? $book['category'] : '' ?></td>
-                                                            <td><?= $book['author'] ?></td>
-                                                            <td><?= $book['publisher'] ?></td>
-                                                            <td><?= $book['publish_year'] ?></td>
                                                             <td class="d-flex gap-2">
                                                                 <!-- edit -->
                                                                 <a href="edit.php?id=<?= $book['id'] ?>" class="dropdown-item p-1" id="editBtn">
@@ -119,33 +113,32 @@ require_once('proses.php');
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <!-- Paginate -->
+                                        <div class="demo-inline-spacing">
+                                            <nav aria-label="Page navigation">
+                                                <ul class="pagination">
+                                                    <?php if ($page > 1) : ?>
+                                                        <li class="page-item prev">
+                                                            <a class="page-link" href="?page=<?= $page - 1 ?>"><i class="tf-icon bx bx-chevron-left"></i></a>
+                                                        </li>
+                                                    <?php endif ?>
+                                                    <?php for ($i = 1; $i < $totalPages; $i++) : ?>
+                                                        <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                                                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                                                        </li>
+                                                    <?php endfor ?>
+                                                    <?php if ($page < $totalPages) : ?>
+                                                        <li class="page-item next">
+                                                            <a class="page-link" href="?page=<?= $page + 1 ?>"><i class="tf-icon bx bx-chevron-right"></i></a>
+                                                        </li>
+                                                    <?php endif ?>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                        <!--/ Basic Pagination -->
                                     </div>
                                 </div>
 
-                                <!-- Paginate -->
-                                <div class="demo-inline-spacing ms-3">
-                                    <!-- Basic Pagination -->
-                                    <nav aria-label="Page navigation">
-                                        <ul class="pagination">
-                                            <?php if ($page > 1) : ?>
-                                                <li class="page-item prev">
-                                                    <a class="page-link" href="?page=<?= $page - 1 ?>"><i class="tf-icon bx bx-chevron-left"></i></a>
-                                                </li>
-                                            <?php endif ?>
-                                            <?php for ($i = 1; $i < $totalPages; $i++) : ?>
-                                                <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                                                    <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                                                </li>
-                                            <?php endfor ?>
-                                            <?php if ($page < $totalPages) : ?>
-                                                <li class="page-item next">
-                                                    <a class="page-link" href="?page=<?= $page + 1 ?>"><i class="tf-icon bx bx-chevron-right"></i></a>
-                                                </li>
-                                            <?php endif ?>
-                                        </ul>
-                                    </nav>
-                                    <!--/ Basic Pagination -->
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -219,6 +212,8 @@ $src = [
     'https://code.jquery.com/jquery-3.6.0.min.js',
     '../assets/vendor/libs/popper/popper.js',
     '../assets/vendor/js/bootstrap.js',
+    '../assets/vendor/js/jquery.dataTables.min.js',
+    '../assets/vendor/js/dataTables.bootstrap5.min.js',
     '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js',
     '../assets/vendor/js/menu.js',
     '../assets/js/main.js',
@@ -227,6 +222,13 @@ $src = [
 ];
 
 $script = "
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            paging: false,
+        });
+    });
+</script>
 <script>
     const deleteButtons = document.querySelectorAll('.btn-delete');
     const deleteBookId = document.querySelector('#delete-book-id');

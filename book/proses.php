@@ -32,7 +32,7 @@ function countBooks()
 
 // Menampilkan tabel buku beserta fitur pagination
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$perPage = 5;
+$perPage = 10;
 $offset = ($page - 1) * $perPage;
 $books = getBooks($offset, $perPage);
 
