@@ -184,7 +184,7 @@ require_once('proses.php');
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
-                    <input type="hidden" name="id" id="delete-book-id">
+                    <input type="hidden" name="id" id="book-id">
                     <button type="submit" class="btn btn-primary" name="delete_book">Save changes</button>
                 </form>
             </div>
@@ -214,7 +214,7 @@ $script = "
 </script>
 <script>
     const deleteButtons = document.querySelectorAll('.btn-delete');
-    const deleteBookId = document.querySelector('#delete-book-id');
+    const deleteBookId = document.querySelector('#book-id');
 
     deleteButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -222,7 +222,7 @@ $script = "
             deleteBookId.value = bookId;
             $('#modalCenter').modal('show');
         })
-    })
+    });
 </script>
 ";
 

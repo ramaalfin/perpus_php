@@ -32,7 +32,7 @@ function countBooks()
 
 // Menampilkan tabel buku beserta fitur pagination
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$perPage = 10;
+$perPage = 5;
 $offset = ($page - 1) * $perPage;
 $books = getBooks($offset, $perPage);
 
@@ -66,7 +66,7 @@ if (isset($_POST['addBtnSubmit'])) {
         exit();
     } else {
         $_SESSION['error_book'] = "Gagal menambah data buku";
-        header('Location: ' . $_SERVER['HTTP_REFERER']); // redirect ke halaman sebelumnya
+        header('Location: index.php');
         exit();
     }
 }
@@ -98,7 +98,7 @@ if (isset($_POST['editBtnSubmit'])) {
         exit();
     } else {
         $_SESSION['error_book'] = "Gagal mengubah data buku";
-        header('Location: ' . $_SERVER['HTTP_REFERER']); // redirect ke halaman sebelumnya
+        header('Location: index.php');
         exit();
     }
 }

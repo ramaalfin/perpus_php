@@ -1,6 +1,6 @@
 <?php
-$title = "Add Members";
-$active = "member";
+$title = "Add Book Categories";
+$active = "category";
 $href = [
     'https://fonts.googleapis.com',
     'https://fonts.gstatic.com',
@@ -48,7 +48,7 @@ require_once('proses.php');
                             <div class="card">
                                 <div class="d-flex align-items-start row">
                                     <div class="card-body">
-                                        <h5 class="card-title text-primary ms-2">Add Books</h5>
+                                        <h5 class="card-title text-primary ms-2">Add Book Categories</h5>
                                         <form action="proses.php" method="POST">
                                             <div class="p-2">
                                                 <div class="row">
@@ -59,14 +59,8 @@ require_once('proses.php');
                                                 </div>
                                                 <div class="row">
                                                     <div class="col mb-3">
-                                                        <label for="address" class="form-label">Address</label>
-                                                        <input type="text" id="address" class="form-control" name="address" placeholder="Address" required>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="phone_number" class="form-label">Phone Number</label>
-                                                        <input type="text" id="phone_number" class="form-control" name="phone_number" placeholder="Phone Number" required>
+                                                        <label for="description" class="form-label">Description</label>
+                                                        <textarea rows="10" type="text" id="description" class="form-control" name="description" placeholder="Description" required></textarea>
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary" id="btnSubmit" name="addBtnSubmit">Add</button>

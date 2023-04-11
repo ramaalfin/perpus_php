@@ -51,7 +51,6 @@ require_once('proses.php');
                                         <h5 class="card-title text-primary ms-2">Add Books</h5>
                                         <form action="proses.php" method="POST">
                                             <div class="p-2">
-                                                <input type="hidden" name="id" value="">
                                                 <div class="row">
                                                     <div class="col mb-3">
                                                         <label for="title" class="form-label">Title</label>
