@@ -15,6 +15,8 @@ $href = [
 require('../layouts/header.php');
 ?>
 
+<?php require('proses.php')?>
+
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
@@ -88,7 +90,12 @@ require('../layouts/header.php');
                                         </div>
                                     </div>
                                     <span class="fw-semibold d-block mb-1">Book Categories</span>
-                                    <h3 class="card-title mb-2">12</h3>
+                                    <h3 class="card-title mb-2">
+                                        <?php 
+                                        $sum_category = countCategories();
+                                        echo implode($sum_category);
+                                        ?>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +123,11 @@ require('../layouts/header.php');
                                         </div>
                                     </div>
                                     <span class="fw-semibold d-block mb-1">Books</span>
-                                    <h3 class="card-title mb-2">20</h3>
+                                    <h3 class="card-title mb-2"><?php 
+                                        $sumBook = countBooks();
+                                        echo implode($sumBook);
+                                        ?>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +154,11 @@ require('../layouts/header.php');
                                         </div>
                                     </div>
                                     <span class="fw-semibold d-block mb-1">Members</span>
-                                    <h3 class="card-title mb-2">126</h3>
+                                    <h3 class="card-title mb-2"><?php 
+                                        $sumMember = countMembers();
+                                        echo implode($sumMember);
+                                        ?>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +186,11 @@ require('../layouts/header.php');
                                         </div>
                                     </div>
                                     <span class="fw-semibold d-block mb-1">Loans</span>
-                                    <h3 class="card-title mb-2">80</h3>
+                                    <h3 class="card-title mb-2"><?php 
+                                        $sumLoan = countLoans();
+                                        echo implode($sumLoan);
+                                        ?>
+                                    </h3>
                                 </div>
                             </div>
                         </div>

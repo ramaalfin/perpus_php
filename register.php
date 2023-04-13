@@ -1,5 +1,5 @@
 <?php
-$title = 'Login - Admin';
+$title = 'Register - Admin';
 $href = [
   'https://fonts.googleapis.com',
   'https://fonts.gstatic.com',
@@ -65,6 +65,10 @@ require('layouts/header.php')
 
           <form id="formAuthentication" class="mb-3" action="beranda/index.php" method="POST">
             <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus />
+            </div>
+            <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" autofocus />
             </div>
@@ -78,14 +82,14 @@ require('layouts/header.php')
               </div>
             </div>
             <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+              <button class="btn btn-primary d-grid w-100" type="submit">Sign up</button>
             </div>
           </form>
 
           <p class="text-center">
-            <span>New on our platform?</span>
-            <a href="register.php">
-              <span>Create an account</span>
+            <span>Already have an account?</span>
+            <a href="index.php">
+              <span>Sign in</span>
             </a>
           </p>
         </div>
