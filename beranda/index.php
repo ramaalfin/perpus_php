@@ -1,4 +1,5 @@
 <?php
+require('proses.php');
 $title = "Beranda";
 $active = "beranda";
 $href = [
@@ -14,8 +15,6 @@ $href = [
 ];
 require('../layouts/header.php');
 ?>
-
-<?php require('proses.php')?>
 
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">

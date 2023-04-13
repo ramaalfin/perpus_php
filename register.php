@@ -63,7 +63,7 @@ require('layouts/header.php')
           <h4 class="mb-2">Welcome to Sneat! 👋</h4>
           <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-          <form id="formAuthentication" class="mb-3" action="beranda/index.php" method="POST">
+          <form class="mb-3" action="auth.php" method="POST">
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
               <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus />
@@ -82,7 +82,7 @@ require('layouts/header.php')
               </div>
             </div>
             <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit">Sign up</button>
+              <button class="btn btn-primary d-grid w-100" type="submit" name="addUser">Sign up</button>
             </div>
           </form>
 
@@ -98,6 +98,7 @@ require('layouts/header.php')
     </div>
   </div>
 </div>
+
 <?php
 $src = [
   'assets/vendor/js/helpers.js',

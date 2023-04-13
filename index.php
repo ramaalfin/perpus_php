@@ -13,6 +13,7 @@ $href = [
 ];
 require('layouts/header.php')
 ?>
+
 <div class="container-xxl">
   <div class="authentication-wrapper authentication-basic container-p-y">
     <div class="authentication-inner">
@@ -63,14 +64,14 @@ require('layouts/header.php')
           <h4 class="mb-2">Welcome to Sneat! 👋</h4>
           <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-          <form id="formAuthentication" class="mb-3" action="beranda/index.php" method="POST">
+          <form class="mb-3" action="auth.php" method="POST">
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" autofocus />
+              <label for="username" class="form-label">Username</label>
+              <input type="username" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus />
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
-                <label class="form-label" for="password">Password</label>
+                <label class="form-label" for="password" name="password">Password</label>
               </div>
               <div class="input-group input-group-merge">
                 <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
@@ -78,7 +79,7 @@ require('layouts/header.php')
               </div>
             </div>
             <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+              <button class="btn btn-primary d-grid w-100" type="submit" name="login">Sign in</button>
             </div>
           </form>
 
@@ -94,6 +95,7 @@ require('layouts/header.php')
     </div>
   </div>
 </div>
+
 <?php
 $src = [
   'assets/vendor/js/helpers.js',

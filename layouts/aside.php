@@ -47,37 +47,43 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <?php if(isset($href)){?>
-        <li class="menu-item <?php echo ($active == 'beranda' ? 'active' : '') ?>">
-            <a href="<?= $href[0] ?>" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div>Dashboard</div>
-            </a>
-        </li>
-        <li class="menu-item <?php echo ($active == 'category' ? 'active' : '') ?>">
-            <a href="<?= $href[1] ?>" class="menu-link">
-                <i class='menu-icon tf-icons bx bx-book-content'></i>
-                <div>Book Categories</div>
-            </a>
-        </li>
-        <li class="menu-item <?php echo ($active == 'book' ? 'active' : '') ?>">
-            <a href="<?= $href[2] ?>" class="menu-link">
-                <i class='menu-icon tf-icons bx bx-book'></i>
-                <div>Books</div>
-            </a>
-        </li>
-        <li class="menu-item <?php echo ($active == 'member' ? 'active' : '') ?>">
-            <a href="<?= $href[3] ?>" class="menu-link">
-                <i class='menu-icon tf-icons bx bx-user'></i>
-                <div>Members</div>
-            </a>
-        </li>
-        <li class="menu-item <?php echo ($active == 'loan' ? 'active' : '') ?>">
-            <a href="<?= $href[4] ?>" class="menu-link">
-                <i class='menu-icon tf-icons bx bx-archive-in'></i>
-                <div>Loan</div>
-            </a>
-        </li>
-        <?php }?>
+        <?php if (isset($href)) { ?>
+            <li class="menu-item <?php echo ($active == 'beranda' ? 'active' : '') ?>">
+                <a href="<?= $href[0] ?>" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                    <div>Dashboard</div>
+                </a>
+            </li>
+            <li class="menu-item <?php echo ($active == 'category' ? 'active' : '') ?>">
+                <a href="<?= $href[1] ?>" class="menu-link">
+                    <i class='menu-icon tf-icons bx bx-book-content'></i>
+                    <div>Book Categories</div>
+                </a>
+            </li>
+            <li class="menu-item <?php echo ($active == 'book' ? 'active' : '') ?>">
+                <a href="<?= $href[2] ?>" class="menu-link">
+                    <i class='menu-icon tf-icons bx bx-book'></i>
+                    <div>Books</div>
+                </a>
+            </li>
+            <li class="menu-item <?php echo ($active == 'member' ? 'active' : '') ?>">
+                <a href="<?= $href[3] ?>" class="menu-link">
+                    <i class='menu-icon tf-icons bx bx-user'></i>
+                    <div>Members</div>
+                </a>
+            </li>
+            <li class="menu-item <?php echo ($active == 'loan' ? 'active' : '') ?>">
+                <a href="<?= $href[4] ?>" class="menu-link">
+                    <i class='menu-icon tf-icons bx bx-archive-in'></i>
+                    <div>Loan</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <form action="../logout.php" method="POST" class="menu-link">
+                    <i class='menu-icon tf-icons bx bx-archive-in'></i>
+                    <button type="submit" name="logout" class="btn p-0">Logout</button>
+                </form>
+            </li>
+        <?php } ?>
     </ul>
 </aside>

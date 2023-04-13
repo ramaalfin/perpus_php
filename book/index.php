@@ -1,4 +1,7 @@
 <?php
+require_once('proses.php');
+require_once("../auth.php");
+checkLogin();
 $title = "Books";
 $active = "book";
 $href = [
@@ -13,10 +16,6 @@ $href = [
 
 ];
 require('../layouts/header.php');
-?>
-
-<?php
-require_once('proses.php');
 ?>
 
 <!-- Layout wrapper -->
