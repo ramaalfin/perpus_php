@@ -37,7 +37,7 @@ require_once('proses.php');
         <div class="layout-page">
             <!-- Toast-->
             <?php if (isset($_SESSION['success_member']) || isset($_SESSION['error_member'])) : ?>
-                <div class="bs-toast toast toast-placement-ex m-2 fade show bg-success bottom-0 end-0" id="toastModal" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="bs-toast toast toast-placement-ex m-2 fade show bg-<?= (isset($_SESSION['success_member'])) ? 'success' : 'danger' ?> bottom-0 end-0" id="toastModal" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header">
                         <i class="bx bx-bell me-2"></i>
                         <div class="me-auto fw-semibold">Notifications</div>

@@ -8,8 +8,7 @@ function getCategory()
     $query = "SELECT * FROM book_categories";
     $stmt = $conn->prepare($query);
     $stmt->execute();
-    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $categories;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 function getBooks($offset, $perPage)
 {

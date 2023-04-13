@@ -11,15 +11,18 @@ $href = [
     '../assets/css/demo.css',
     '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css',
     '../assets/vendor/css/pages/page-auth.css',
+    '../assets/vendor/css/dataTables.bootstrap5.min.css',
 ];
 require('../layouts/header.php');
 ?>
+
+<?php require('proses.php') ?>
 
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
         <!-- Menu -->
-        <?php 
+        <?php
         $href = [
             '../beranda/index.php',
             '../book_categories/index.php',
@@ -34,6 +37,26 @@ require('../layouts/header.php');
         <!-- Layout container -->
         <div class="layout-page">
 
+            <!-- Toast-->
+            <?php if (isset($_SESSION['success_loan']) || isset($_SESSION['error_loan'])) : ?>
+                <div class="bs-toast toast toast-placement-ex m-2 fade show bg-<?= (isset($_SESSION['success_loan'])) ? 'success' : 'danger' ?> bottom-0 end-0" id="toastModal" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="bx bx-bell me-2"></i>
+                        <div class="me-auto fw-semibold">Notifications</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <p><?php echo isset($_SESSION['success_loan']) ? $_SESSION['success_loan'] : $_SESSION['error_loan'] ?></p>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function() {
+                        $("#toastModal").modal("show");
+                    });
+                </script>
+            <?php endif; ?>
+
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
@@ -44,140 +67,65 @@ require('../layouts/header.php');
                             <div class="card">
                                 <div class="d-flex align-items-start row">
                                     <div class="card-body">
-                                        <h5 class="card-title text-primary ms-2">Loan</h5>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title text-primary ms-2">Loan</h5>
+                                            <a href="tambah.php" class="btn btn-primary">+</a>
+                                        </div>
+
                                         <div class="table-responsive text-nowrap">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Project</th>
-                                                        <th>Client</th>
-                                                        <th>Users</th>
-                                                        <th>Status</th>
+                                                        <th>Member</th>
+                                                        <th>Book</th>
+                                                        <th>Loan Date</th>
+                                                        <th>Return Date</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
-                                                    <tr>
-                                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
-                                                        <td>Albert Cook</td>
-                                                        <td>
-                                                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Lilian Fuller">
-                                                                    <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Sophia Wilkerson">
-                                                                    <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Christina Parker">
-                                                                    <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                        <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                                </button>
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>React Project</strong></td>
-                                                        <td>Barry Hunter</td>
-                                                        <td>
-                                                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Lilian Fuller">
-                                                                    <img src="assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Sophia Wilkerson">
-                                                                    <img src="assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Christina Parker">
-                                                                    <img src="assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                        <td><span class="badge bg-label-success me-1">Completed</span></td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                                </button>
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-2"></i> Edit</a>
-                                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-2"></i> Delete</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>VueJs Project</strong></td>
-                                                        <td>Trevor Baker</td>
-                                                        <td>
-                                                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Lilian Fuller">
-                                                                    <img src="assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Sophia Wilkerson">
-                                                                    <img src="assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Christina Parker">
-                                                                    <img src="assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                        <td><span class="badge bg-label-info me-1">Scheduled</span></td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                                </button>
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-2"></i> Edit</a>
-                                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-2"></i> Delete</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i class="fab fa-bootstrap fa-lg text-primary me-3"></i> <strong>Bootstrap Project</strong>
-                                                        </td>
-                                                        <td>Jerry Milton</td>
-                                                        <td>
-                                                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Lilian Fuller">
-                                                                    <img src="assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Sophia Wilkerson">
-                                                                    <img src="assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Christina Parker">
-                                                                    <img src="assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                        <td><span class="badge bg-label-warning me-1">Pending</span></td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                                </button>
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-2"></i> Edit</a>
-                                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-2"></i> Delete</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                    <?php
+                                                    $loans = getLoan($offset, $perPage);
+                                                    ?>
+                                                    <?php foreach ($loans as $loan) : ?>
+                                                        <tr>
+                                                            <td><?= $loan['name'] ?></td>
+                                                            <td><?= $loan['book'] ?></td>
+                                                            <td><?= $loan['loan_date'] ?></td>
+                                                            <td><?= $loan['return_date'] ?></td>
+                                                            <td class="d-flex">
+                                                                <a class="dropdown-item w-auto p-1" href="edit.php?id=<?= $loan['id'] ?>">
+                                                                    <i class="bx bx-pencil"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach ?>
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <!-- Paginate -->
+                                        <div class="demo-inline-spacing">
+                                            <nav aria-label="Page navigation">
+                                                <ul class="pagination">
+                                                    <?php if ($page > 1) : ?>
+                                                        <li class="page-item prev">
+                                                            <a class="page-link" href="?page=<?= $page - 1 ?>"><i class="tf-icon bx bx-chevron-left"></i></a>
+                                                        </li>
+                                                    <?php endif ?>
+                                                    <?php for ($i = 1; $i < $totalPage; $i++) : ?>
+                                                        <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                                                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                                                        </li>
+                                                    <?php endfor ?>
+                                                    <?php if ($page < $totalPage) : ?>
+                                                        <li class="page-item next">
+                                                            <a class="page-link" href="?page=<?= $page + 1 ?>"><i class="tf-icon bx bx-chevron-right"></i></a>
+                                                        </li>
+                                                    <?php endif ?>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                        <!--/ Basic Pagination -->
                                     </div>
                                 </div>
                             </div>
@@ -227,10 +175,24 @@ $src = [
     '../assets/vendor/libs/jquery/jquery.js',
     '../assets/vendor/libs/popper/popper.js',
     '../assets/vendor/js/bootstrap.js',
+    '../assets/vendor/js/jquery.dataTables.min.js',
+    '../assets/vendor/js/dataTables.bootstrap5.min.js',
     '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js',
-    '../assets/vendor/js/menu.js',
-    '../assets/js/main.js',
     'https://buttons.github.io/buttons.js',
 ];
-require('../layouts/footer.php')
+$script = "
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            paging: false,
+        });
+    });
+</script>
+<script>
+    
+</script>
+";
+require('../layouts/footer.php');
+unset($_SESSION['success_loan']);
+unset($_SESSION['error_loan']);
 ?>
