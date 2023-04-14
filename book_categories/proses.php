@@ -2,11 +2,6 @@
 session_start();
 require('../database.php');
 
-if(!isset($_SESSION['user'])) {
-    header('Location: ../index.php');
-    exit();
-}
-
 function getCategory($offset, $perPage){
     global $conn;
     $stmt = $conn->prepare("SELECT book_categories.id, book_categories.name, COUNT(books.id) AS jumlah_buku FROM book_categories LEFT JOIN books ON book_categories.id = books.category_id GROUP BY book_categories.id LIMIT :offset, :perPage");

@@ -1,3 +1,4 @@
+<?php require('auth.php')?>
 <?php
 $title = 'Login - Admin';
 $href = [

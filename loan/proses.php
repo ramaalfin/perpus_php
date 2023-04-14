@@ -2,11 +2,6 @@
 session_start();
 require('../database.php');
 
-if(!isset($_SESSION['user'])) {
-    header('Location: ../index.php');
-    exit();
-}
-
 function getLoan($offset, $perPage)
 {
     global $conn;

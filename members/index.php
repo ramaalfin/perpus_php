@@ -1,4 +1,14 @@
 <?php
+
+require_once('proses.php');
+
+if (isset($_SESSION['user'])) {
+    $username = $_SESSION['user']['username'];
+} else {
+    header('Location: ../index.php');
+    exit();
+}
+
 $title = "Members";
 $active = "member";
 $href = [
@@ -11,10 +21,6 @@ $href = [
     '../assets/vendor/css/dataTables.bootstrap5.min.css',
 ];
 require('../layouts/header.php');
-?>
-
-<?php
-require_once('proses.php');
 ?>
 
 <!-- Layout wrapper -->

@@ -1,5 +1,13 @@
 <?php
 require('proses.php');
+
+if (isset($_SESSION['user'])) {
+    $username = $_SESSION['user']['username'];
+} else {
+    header('Location: ../index.php');
+    exit();
+}
+
 $title = "Beranda";
 $active = "beranda";
 $href = [
@@ -17,7 +25,7 @@ require('../layouts/header.php');
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
         <!-- Menu -->
-        <?php 
+        <?php
         $href = [
             '../beranda/index.php',
             '../book_categories/index.php',
@@ -25,15 +33,20 @@ require('../layouts/header.php');
             '../members/index.php',
             '../loan/index.php',
         ];
-        require('../layouts/aside.php') 
+        require('../layouts/aside.php')
         ?>
         <!-- / Menu -->
 
         <!-- Layout container -->
         <div class="layout-page">
 
+            <div class="alert alert-primary alert-dismissible" id="notif" role="alert">
+                <?= "Selamat datang, " . $username; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
             <!-- NAVBAR -->
-            <?php require('../layouts/nav.php')?>
+            <?php require('../layouts/nav.php') ?>
             <!-- NAVBAR -->
 
             <!-- Content wrapper -->
@@ -91,7 +104,7 @@ require('../layouts/header.php');
                                     </div>
                                     <span class="fw-semibold d-block mb-1">Book Categories</span>
                                     <h3 class="card-title mb-2">
-                                        <?php 
+                                        <?php
                                         $sum_category = countCategories();
                                         echo implode($sum_category);
                                         ?>
@@ -123,10 +136,10 @@ require('../layouts/header.php');
                                         </div>
                                     </div>
                                     <span class="fw-semibold d-block mb-1">Books</span>
-                                    <h3 class="card-title mb-2"><?php 
-                                        $sumBook = countBooks();
-                                        echo implode($sumBook);
-                                        ?>
+                                    <h3 class="card-title mb-2"><?php
+                                                                $sumBook = countBooks();
+                                                                echo implode($sumBook);
+                                                                ?>
                                     </h3>
                                 </div>
                             </div>
@@ -154,10 +167,10 @@ require('../layouts/header.php');
                                         </div>
                                     </div>
                                     <span class="fw-semibold d-block mb-1">Members</span>
-                                    <h3 class="card-title mb-2"><?php 
-                                        $sumMember = countMembers();
-                                        echo implode($sumMember);
-                                        ?>
+                                    <h3 class="card-title mb-2"><?php
+                                                                $sumMember = countMembers();
+                                                                echo implode($sumMember);
+                                                                ?>
                                     </h3>
                                 </div>
                             </div>
@@ -186,10 +199,10 @@ require('../layouts/header.php');
                                         </div>
                                     </div>
                                     <span class="fw-semibold d-block mb-1">Loans</span>
-                                    <h3 class="card-title mb-2"><?php 
-                                        $sumLoan = countLoans();
-                                        echo implode($sumLoan);
-                                        ?>
+                                    <h3 class="card-title mb-2"><?php
+                                                                $sumLoan = countLoans();
+                                                                echo implode($sumLoan);
+                                                                ?>
                                     </h3>
                                 </div>
                             </div>
@@ -250,5 +263,14 @@ $src = [
     '../assets/vendor/js/helpers.js',
     '../assets/js/config.js',
 ];
+
+$script = "
+<script>
+    setTimeout(function() {
+        document.getElementById('notif').style.display = 'none';
+    }, 2000);
+</script>
+";
+
 require('../layouts/footer.php')
 ?>

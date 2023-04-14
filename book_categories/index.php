@@ -1,4 +1,14 @@
 <?php
+
+require_once('proses.php');
+
+if (isset($_SESSION['user'])) {
+    $username = $_SESSION['user']['username'];
+} else {
+    header('Location: ../index.php');
+    exit();
+}
+
 $title = "Book Categories";
 $active = "category";
 $href = [
@@ -12,8 +22,6 @@ $href = [
 ];
 require('../layouts/header.php');
 ?>
-
-<?php require_once('proses.php') ?>
 
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">

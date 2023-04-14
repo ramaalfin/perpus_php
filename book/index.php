@@ -1,6 +1,13 @@
 <?php
 require_once('proses.php');
-require_once("../auth.php");
+
+if (isset($_SESSION['user'])) {
+    $username = $_SESSION['user']['username'];
+} else {
+    header('Location: ../index.php');
+    exit();
+}
+
 $title = "Books";
 $active = "book";
 $href = [
