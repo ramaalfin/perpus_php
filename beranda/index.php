@@ -3,9 +3,6 @@ require('proses.php');
 $title = "Beranda";
 $active = "beranda";
 $href = [
-    'https://fonts.googleapis.com',
-    'https://fonts.gstatic.com',
-    'https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap',
     '../assets/vendor/fonts/boxicons.css',
     '../assets/vendor/css/core.css',
     '../assets/vendor/css/theme-default.css',
@@ -35,6 +32,10 @@ require('../layouts/header.php');
         <!-- Layout container -->
         <div class="layout-page">
 
+            <!-- NAVBAR -->
+            <?php require('../layouts/nav.php')?>
+            <!-- NAVBAR -->
+
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
@@ -57,7 +58,7 @@ require('../layouts/header.php');
                                     </div>
                                     <div class="col-sm-5 text-center text-sm-left">
                                         <div class="card-body pb-0 px-0 px-md-4">
-                                            <img src="assets/img/illustrations/man-with-laptop-light.png" height="140" alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png" data-app-light-img="illustrations/man-with-laptop-light.png">
+                                            <img src="../assets/img/illustrations/man-with-laptop-light.png" height="140" alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png" data-app-light-img="illustrations/man-with-laptop-light.png">
                                         </div>
                                     </div>
                                 </div>
@@ -237,8 +238,17 @@ require('../layouts/header.php');
 
 <?php
 $src = [
-    'assets/vendor/js/helpers.js',
-    'assets/js/config.js'
+    '../assets/vendor/libs/jquery/jquery.js',
+    '../assets/vendor/libs/popper/popper.js',
+    '../assets/vendor/js/bootstrap.js',
+    '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js',
+    '../assets/vendor/js/menu.js',
+    '../assets/js/main.js',
+    '../assets/vendor/js/jquery.dataTables.min.js',
+    '../assets/vendor/js/dataTables.bootstrap5.min.js',
+    'https://buttons.github.io/buttons.js',
+    '../assets/vendor/js/helpers.js',
+    '../assets/js/config.js',
 ];
 require('../layouts/footer.php')
 ?>

@@ -2,6 +2,11 @@
 session_start();
 require('../database.php');
 
+if(!isset($_SESSION['user'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
 function getMembers($offset, $perPage)
 {
     global $conn;

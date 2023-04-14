@@ -2,10 +2,10 @@
 
 <html
   lang="en"
-  class="light-style customizer-hide"
+  class="light-style layout-menu-fixed layout-menu-100vh"
   dir="ltr"
   data-theme="theme-default"
-  data-assets-path="assets/"
+  data-assets-path="../assets/"
   data-template="vertical-menu-template-free"
 >
   <head>

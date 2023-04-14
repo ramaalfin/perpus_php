@@ -52,6 +52,11 @@ require('../layouts/header.php');
                     });
                 </script>
             <?php endif; ?>
+
+            <!-- NAVBAR -->
+            <?php require('../layouts/nav.php')?>
+            <!-- NAVBAR -->
+
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
@@ -188,10 +193,14 @@ require('../layouts/header.php');
                     '../assets/vendor/libs/jquery/jquery.js',
                     '../assets/vendor/libs/popper/popper.js',
                     '../assets/vendor/js/bootstrap.js',
+                    '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js',
+                    '../assets/vendor/js/menu.js',
+                    '../assets/js/main.js',
                     '../assets/vendor/js/jquery.dataTables.min.js',
                     '../assets/vendor/js/dataTables.bootstrap5.min.js',
-                    '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js',
                     'https://buttons.github.io/buttons.js',
+                    '../assets/vendor/js/helpers.js',
+                    '../assets/js/config.js',
                 ];
 
                 $script = "

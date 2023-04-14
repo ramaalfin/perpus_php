@@ -2,6 +2,11 @@
 session_start();
 require_once('../database.php');
 
+if(!isset($_SESSION['user'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
 function countCategories()
 {
     global $conn;

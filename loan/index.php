@@ -57,6 +57,10 @@ require('../layouts/header.php');
                 </script>
             <?php endif; ?>
 
+            <!-- NAVBAR -->
+            <?php require('../layouts/nav.php')?>
+            <!-- NAVBAR -->
+
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->

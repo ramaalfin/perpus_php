@@ -56,6 +56,10 @@ require_once('proses.php');
             <?php endif; ?>
             <!-- Toast -->
 
+            <!-- NAVBAR -->
+            <?php require('../layouts/nav.php')?>
+            <!-- NAVBAR -->
+
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
@@ -138,7 +142,7 @@ require_once('proses.php');
                     <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                         <div class="mb-2 mb-md-0">
                             ©
-                            <script>
+                            <scrip>
                                 document.write(new Date().getFullYear());
                             </script>
                             , made with ❤️ by
@@ -197,9 +201,11 @@ $src = [
     '../assets/vendor/libs/jquery/jquery.js',
     '../assets/vendor/libs/popper/popper.js',
     '../assets/vendor/js/bootstrap.js',
+    '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js',
+    '../assets/vendor/js/menu.js',
+    '../assets/js/main.js',
     '../assets/vendor/js/jquery.dataTables.min.js',
     '../assets/vendor/js/dataTables.bootstrap5.min.js',
-    '../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js',
     'https://buttons.github.io/buttons.js',
 ];
 

@@ -1,7 +1,6 @@
 <?php
 require_once('proses.php');
 require_once("../auth.php");
-checkLogin();
 $title = "Books";
 $active = "book";
 $href = [
@@ -57,6 +56,10 @@ require('../layouts/header.php');
                 </script>
             <?php endif; ?>
             <!-- Toast -->
+
+            <!-- NAVBAR -->
+            <?php require('../layouts/nav.php')?>
+            <!-- NAVBAR -->
 
             <!-- Content wrapper -->
             <div class="content-wrapper">
