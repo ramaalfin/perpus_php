@@ -2,7 +2,6 @@
 session_start();
 require_once('../database.php');
 
-
 function countCategories()
 {
     global $conn;

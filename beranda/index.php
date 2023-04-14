@@ -1,12 +1,11 @@
 <?php
 require('proses.php');
 
-if (isset($_SESSION['user'])) {
-    $username = $_SESSION['user']['username'];
-} else {
+if (!isset($_SESSION['user']['username']) == "admin") {
     header('Location: ../index.php');
     exit();
 }
+
 
 $title = "Beranda";
 $active = "beranda";
@@ -40,10 +39,14 @@ require('../layouts/header.php');
         <!-- Layout container -->
         <div class="layout-page">
 
-            <div class="alert alert-primary alert-dismissible" id="notif" role="alert">
-                <?= "Selamat datang, " . $username; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            <!-- NOTIFIKASI -->
+            <?php
+            if (isset($_SESSION['welcome_message'])) {
+                echo $_SESSION['welcome_message'];
+                unset($_SESSION['welcome_message']);
+            }
+            ?>
+            <!-- NOTIFIKASI -->
 
             <!-- NAVBAR -->
             <?php require('../layouts/nav.php') ?>

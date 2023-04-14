@@ -1,4 +1,11 @@
 <?php
+
+require_once('proses.php');
+if(!isset($_SESSION['user']['username']) == "admin") {
+    header('Location: ../index.php');
+    exit();
+}
+
 $title = "Edit Book Categories";
 $active = "category";
 $href = [
@@ -13,7 +20,6 @@ $href = [
     '../assets/vendor/css/pages/page-auth.css',
 ];
 require('../layouts/header.php');
-require_once('proses.php');
 ?>
 
 <?php 

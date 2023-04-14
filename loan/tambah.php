@@ -1,4 +1,10 @@
 <?php
+require_once('proses.php');
+if(!isset($_SESSION['user']['username']) == "admin") {
+    header('Location: ../index.php');
+    exit();
+}
+
 $title = "Add Loan";
 $active = "loan";
 $href = [
@@ -13,10 +19,6 @@ $href = [
     '../assets/vendor/css/pages/page-auth.css',
 ];
 require('../layouts/header.php');
-?>
-
-<?php
-require_once('proses.php');
 ?>
 
 <!-- Layout wrapper -->

@@ -12,15 +12,21 @@ if(isset($_POST['login'])) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Jika data ditemukan, maka simpan informasi pengguna ke dalam session
-     if ($user && password_verify($password, $user['password'])) {
+    if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user'] = [
             'id' => $user['id'],
             'username' => $user['username'],
             'email' => $user['email']
         ];
+        $_SESSION['welcome_message'] = 
+        '<div class="alert alert-primary alert-dismissible" id="notif" role="alert">'
+            . 'Selamat datang, ' . $user['username']
+            . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+        . '</div>';
         header('Location: beranda/index.php');
         exit();
     } else {
+        echo "username atau password salah";
         header('Location: index.php');
         exit();
     }

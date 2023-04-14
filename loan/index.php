@@ -1,10 +1,7 @@
 <?php
 
-require('proses.php');
-
-if (isset($_SESSION['user'])) {
-    $username = $_SESSION['user']['username'];
-} else {
+require_once('proses.php');
+if(!isset($_SESSION['user']['username']) == "admin") {
     header('Location: ../index.php');
     exit();
 }
